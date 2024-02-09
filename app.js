@@ -40,9 +40,6 @@ function renderTaskItem(taskName) {
 
     const deleteButton = document.createElement("button");
     deleteButton.className = "btn delete-btn";
-    const deleteButtonIcon = document.createElement("img");
-    deleteButtonIcon.src = "./remove.svg";
-    deleteButton.appendChild(deleteButtonIcon);
     deleteButton.onclick = removeTask;
 
     container.appendChild(checkBox);
