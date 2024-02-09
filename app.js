@@ -1,27 +1,20 @@
+const addNewTaskInput = document.getElementById("new-task-input");
+const listOfToDoTasks = document.getElementById("to-do-tasks-list");
+const listOfComplitedTasks = document.getElementById("completed-tasks-list");
+const addNewTaskButton = document.getElementById("add-new-task-button");
+addNewTaskButton.onclick = addNewTask;
 
-// var taskInput = document.getElementById("new-task");//Add a new task.
-// var addButton = document.getElementsByTagName("button")[0];//first button
-// var incompleteTaskHolder = document.getElementById("incompleteTasks");//ul of #incompleteTasks
-// var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
-
-// addButton.onclick = addTask;
-const addNewTaskInput = document.getElementById("new-task-input")
-const listOfToDoTasks = document.getElementById("to-do-tasks-list")
-const listOfComplitedTasks = document.getElementById("completed-tasks-list")
-const addNewTaskButton = document.getElementById("add-new-task-button")
-addNewTaskButton.onclick = addNewTask
-
-const checkBoxesArray = document.querySelectorAll(".task-status-togler")
+const checkBoxesArray = document.querySelectorAll(".task-status-togler");
 checkBoxesArray.forEach(element => {
     element.onclick = toggleTaskCompleteStatus;
 });
 
-const deleteButtonsArray = document.querySelectorAll(".delete-btn")
+const deleteButtonsArray = document.querySelectorAll(".delete-btn");
 deleteButtonsArray.forEach(element => {
     element.onclick = removeTask;
 });
 
-const editeButtonsArray = document.querySelectorAll(".edit-btn")
+const editeButtonsArray = document.querySelectorAll(".edit-btn");
 editeButtonsArray.forEach(element => {
     element.onclick = editExistingTask;
 });
@@ -59,20 +52,13 @@ function renderTaskItem(taskName) {
 }
 
 function addNewTask() {
-    console.log("Add Task...");
-
     if (!addNewTaskInput.value) return;
-
     const newTaskElement = renderTaskItem(addNewTaskInput.value);
-
     listOfToDoTasks.appendChild(newTaskElement);
-
     addNewTaskInput.value = "";
 }
 
 function editExistingTask() {
-    console.log("Edit Task...");
-    console.log(`Change "edit" to "save"`);
     const taskItem = this.parentNode;
     const input = taskItem.querySelector(".task-input");
     const editButton = taskItem.querySelector(".edit-btn");
@@ -87,16 +73,12 @@ function editExistingTask() {
 };
 
 function removeTask() {
-    console.log("Delete Task...");
-
     const taskItem = this.parentNode;
     const currentList = taskItem.parentNode;
     currentList.removeChild(taskItem);
 }
 
 function toggleTaskCompleteStatus(event) {
-    console.log("togle task status...");
-
     const taskItem = this.parentNode;
     if (event.target.checked) {
         listOfComplitedTasks.appendChild(taskItem);
