@@ -1,14 +1,27 @@
 
-var taskInput = document.getElementById("new-task");//Add a new task.
-var addButton = document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder = document.getElementById("incompleteTasks");//ul of #incompleteTasks
-var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
+// var taskInput = document.getElementById("new-task");//Add a new task.
+// var addButton = document.getElementsByTagName("button")[0];//first button
+// var incompleteTaskHolder = document.getElementById("incompleteTasks");//ul of #incompleteTasks
+// var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
 
+// addButton.onclick = addTask;
+const addNewTaskInput = document.getElementById("new-task-input")
+const listOfToDoTasks = document.getElementById("to-do-tasks-list")
+const addNewTaskButton = document.getElementById("add-new-task-button")
+addNewTaskButton.onclick = addNewTask
+
+
+const deleteButtonsArray = document.querySelectorAll(".delete-btn")
+deleteButtonsArray.forEach(element => {
+    element.onclick = removeTask;
+});
 
 function renderTaskItem(taskName) {
     const container = document.createElement("li");
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
+    // checkBox.onchange = checkBoxEventHandler;
+
     const input = document.createElement("input");
     input.type = "text";
     input.className = "task-input";
@@ -16,11 +29,14 @@ function renderTaskItem(taskName) {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.className = "btn edit-btn";
+    // editButton.onclick = editTask;
+
     const deleteButton = document.createElement("button");
     deleteButton.className = "btn delete-btn";
     const deleteButtonIcon = document.createElement("img");
-    deleteButtonIcon.src = './remove.svg';
+    deleteButtonIcon.src = "./remove.svg";
     deleteButton.appendChild(deleteButtonIcon);
+    deleteButton.onclick = removeTask;
 
     container.appendChild(checkBox);
     container.appendChild(input);
@@ -29,30 +45,28 @@ function renderTaskItem(taskName) {
     return container;
 }
 
-var addTask = function () {
+function addNewTask() {
     console.log("Add Task...");
-    //Create a new list item with the text from the #new-task:
-    if (!taskInput.value) return;
-    var listItem = createNewTaskElement(taskInput.value);
 
-    //Append listItem to incompleteTaskHolder
-    incompleteTaskHolder.appendChild(listItem);
-    bindTaskEvents(listItem, taskCompleted);
+    if (!addNewTaskInput.value) return;
 
-    taskInput.value = "";
+    const newTaskElement = renderTaskItem(addNewTaskInput.value);
 
+    listOfToDoTasks.appendChild(newTaskElement);
+
+    addNewTaskInput.value = "";
 }
 
 //Edit an existing task.
 
 var editTask = function () {
     console.log("Edit Task...");
-    console.log("Change 'edit' to 'save'");
+    console.log(`Change "edit" to "save"`);
 
 
     var listItem = this.parentNode;
 
-    var editInput = listItem.querySelector('input[type=text]');
+    var editInput = listItem.querySelector("input[type=text]");
     var label = listItem.querySelector("label");
     var editBtn = listItem.querySelector(".edit");
     var containsClass = listItem.classList.contains("editMode");
@@ -73,15 +87,11 @@ var editTask = function () {
 };
 
 
-//Delete task.
-var deleteTask = function () {
+function removeTask() {
     console.log("Delete Task...");
-
-    var listItem = this.parentNode;
-    var ul = listItem.parentNode;
-    //Remove the parent list item from the ul.
-    ul.removeChild(listItem);
-
+    const taskItem = this.parentNode;
+    const currentList = taskItem.parentNode;
+    currentList.removeChild(taskItem);
 }
 
 
@@ -115,8 +125,7 @@ var taskIncomplete = function () {
 
 
 //Set the click handler to the addTask function.
-addButton.onclick = addTask;
-addButton.addEventListener("click", addTask);
+// addButton.addEventListener("click", addTask);
 
 
 var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
@@ -135,28 +144,6 @@ var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
     checkBox.onchange = checkBoxEventHandler;
 }
 
-//cycle over incompleteTaskHolder ul list items
-//for each list item
-for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
-
-    //bind events to list items chldren(tasksCompleted)
-    bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
-}
 
 
 
-
-//cycle over completedTasksHolder ul list items
-for (var i = 0; i < completedTasksHolder.children.length; i++) {
-    //bind events to list items chldren(tasksIncompleted)
-    bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
-}
-
-
-
-
-// Issues with usability don't get seen until they are in front of a human tester.
-
-//prevent creation of empty tasks.
-
-//Change edit to save when you are in edit mode.
