@@ -45,6 +45,11 @@ h3 {
   flex-grow: 1;
 }
 
+.task-input:disabled {
+  background: transparent;
+  border-color: transparent;
+}
+
 ul {
   margin: 0;
   padding: 0px;

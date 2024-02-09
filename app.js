@@ -11,18 +11,24 @@ const listOfComplitedTasks = document.getElementById("completed-tasks-list")
 const addNewTaskButton = document.getElementById("add-new-task-button")
 addNewTaskButton.onclick = addNewTask
 
-const deleteButtonsArray = document.querySelectorAll(".delete-btn")
-deleteButtonsArray.forEach(element => {
-    element.onclick = removeTask;
-});
-
 const checkBoxesArray = document.querySelectorAll(".task-status-togler")
 checkBoxesArray.forEach(element => {
     element.onclick = toggleTaskCompleteStatus;
 });
 
+const deleteButtonsArray = document.querySelectorAll(".delete-btn")
+deleteButtonsArray.forEach(element => {
+    element.onclick = removeTask;
+});
+
+const editeButtonsArray = document.querySelectorAll(".edit-btn")
+editeButtonsArray.forEach(element => {
+    element.onclick = editExistingTask;
+});
+
 function renderTaskItem(taskName) {
     const container = document.createElement("li");
+
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
     checkBox.onchange = toggleTaskCompleteStatus;
@@ -31,10 +37,12 @@ function renderTaskItem(taskName) {
     input.type = "text";
     input.className = "task-input";
     input.value = taskName;
+    input.disabled = true;
+
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.className = "btn edit-btn";
-    // editButton.onclick = editTask;
+    editButton.onclick = editExistingTask;
 
     const deleteButton = document.createElement("button");
     deleteButton.className = "btn delete-btn";
@@ -62,35 +70,21 @@ function addNewTask() {
     addNewTaskInput.value = "";
 }
 
-//Edit an existing task.
-
-var editTask = function () {
+function editExistingTask() {
     console.log("Edit Task...");
     console.log(`Change "edit" to "save"`);
+    const taskItem = this.parentNode;
+    const input = taskItem.querySelector(".task-input");
+    const editButton = taskItem.querySelector(".edit-btn");
 
-
-    var listItem = this.parentNode;
-
-    var editInput = listItem.querySelector("input[type=text]");
-    var label = listItem.querySelector("label");
-    var editBtn = listItem.querySelector(".edit");
-    var containsClass = listItem.classList.contains("editMode");
-    //If class of the parent is .editmode
-    if (containsClass) {
-
-        //switch to .editmode
-        //label becomes the inputs value.
-        label.innerText = editInput.value;
-        editBtn.innerText = "Edit";
+    if (input.disabled) {
+        editButton.textContent = "Save";
+        input.disabled = false;
     } else {
-        editInput.value = label.innerText;
-        editBtn.innerText = "Save";
+        input.disabled = true;
+        editButton.textContent = "Edit";
     }
-
-    //toggle .editmode on the parent.
-    listItem.classList.toggle("editMode");
 };
-
 
 function removeTask() {
     console.log("Delete Task...");
