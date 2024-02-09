@@ -21,6 +21,7 @@ editeButtonsArray.forEach(element => {
 
 function renderTaskItem(taskName) {
     const container = document.createElement("li");
+    container.className = "task-item-box";
 
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
