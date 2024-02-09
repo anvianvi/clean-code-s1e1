@@ -25,6 +25,7 @@ function renderTaskItem(taskName) {
 
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
+    checkBox.className = "task-status-togler"
     checkBox.onchange = toggleTaskCompleteStatus;
 
     const input = document.createElement("input");
