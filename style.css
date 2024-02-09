@@ -1,148 +1,115 @@
-/* Basic Style */
-body {
-    background-color: #f8f8f8;
-    color: #333;
-    font-family: Lato, sans-serif;
+.body {
+  background-color: #f8f8f8;
+  color: #333;
+  font-family: Lato, sans-serif;
 }
-.aaa {
-    width: 500px;
-    margin: 0 auto;
-    display: block;
-    text-align: right;
+
+.block-title {
+  padding: 20px 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 15px;
+  border-bottom: 2px solid #333;
 }
-.aaa img {
+
+.hero {
+  width: 500px;
+  margin-inline: auto;
+  text-align: right;
+
+  .hero-img {
     width: 100%;
-}
-.aaa .more_inf {
+  }
+
+  .hero-link {
     font-family: fantasy, cursive;
+  }
 }
 
-@media (max-width:768px) {
-.aaa { text-align: center;
-}
-}
-.centered-main-page-element {
-    display: block;
-    width: 500px;
-    margin: 0 auto 0;
-}
-.task {
-    width: 56%;
-    display: inline-block;
-    flex-grow: 1
-}
-.task-row-wrapper {
-    display: flex;
-}
-ul {
-    margin:0;
-    padding: 0px;
-}
-li, h3 {
-    list-style:none;
-}
-input,button{
-    outline:none;
-}
-button {
-    background: none;
-    border: 0px;
-    color: #888;
-    font-size: 15px;
-    width: 60px;
-    font-family: Lato, sans-serif;
-    cursor: pointer;
-}
-button:hover {
-    color: #3a3A3a;
-}
-/* Heading */
-h3,
-label[for='new-task'] {
-    color: #333;
-    font-weight: 700;
-    font-size: 15px;
-    border-bottom: 2px solid #333;
-    padding: 30px 0 10px;
-    margin: 0;
-    text-transform: uppercase;
-}
-input[type="text"] {
-    margin: 0;
-    font-size: 18px;
-    line-height: 18px;
-    height: 21px;
-    padding: 0 9px;
-    border: 1px solid #dDd;
-    background: #FFF;
-    border-radius: 6px;
-    font-family: Lato, sans-serif;
-    color: #888;
-}
-input[type="text"]:focus {
-    color: #333;
+@media (max-width: 768px) {
+  .hero {
+    text-align: center;
+  }
 }
 
-/* New Task */
-label[for='new-task'] {
-    display: block;
-    margin: 0 0 20px;
-}
-input#new-task {
-    width: 318px;
+.content-wrapper {
+  max-width: 500px;
+  margin-inline: auto;
 }
 
-/* Task list */
-li {
-    overflow: hidden;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.input-container {
+  display: flex;
 }
-li > * {
-    vertical-align: middle;
-}
-
-li > input[type="checkbox"] {
-    margin: 0 10px;
-}
-li > label {
-    padding-left: 10px;
-    box-sizing: border-box;
-    font-size: 18px;
-    width: 226px;
-}
-li >    input[type="text"] {
-    width: 226px
-}
-button.delete img {
-    height: 2em;
-    transform: rotateZ(45deg);
-    transition: transform 200ms ease-in;
-}
-button.delete img:hover {
-    transform: rotateZ(0);
+.to-do-item__input {
+  flex-grow: 1;
+  padding: 3px 10px;
+  margin: 0;
+  outline: none;
+  color: #333;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
 }
 
-/* Completed */
-ul#completed-tasks label {
-    text-decoration: line-through
-    color: #888;
+.to-do-item__input:disabled {
+  background: transparent;
+  border-color: transparent;
+  color: #888;
 }
 
-/* Edit Task */
-ul li input[type=text] {
-    display:none
+#completed-tasks-list .to-do-item__input:disabled {
+  text-decoration: line-through;
 }
 
-ul li.editMode input[type=text] {
-    display:inline-block;
-    width:224px
+.list-of-tasks__list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15px 0;
+  border-bottom: 3px solid #eee;
 }
 
-ul li.editMode label {
-    display:none;
+.to-do-item__status-togler {
+  margin: 10px;
+}
+
+.list-of-tasks {
+  padding: 0;
+}
+
+.button {
+  background: none;
+  border: 0px;
+  color: #888;
+  font-size: 15px;
+  width: 60px;
+  font-family: Lato, sans-serif;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #333;
+}
+
+.button--delete {
+  position: relative;
+  width: 2em;
+  height: 2em;
+}
+.button--delete::before {
+  content: url("remove.svg");
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(45deg);
+  transition: transform 200ms ease-in;
+}
+
+.button--delete:hover::before {
+  transform: translate(-50%, -50%) rotateZ(0);
 }
