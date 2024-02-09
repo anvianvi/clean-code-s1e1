@@ -4,43 +4,43 @@ const listOfComplitedTasks = document.getElementById("completed-tasks-list");
 const addNewTaskButton = document.getElementById("add-new-task-button");
 addNewTaskButton.onclick = addNewTask;
 
-const checkBoxesArray = document.querySelectorAll(".task-status-togler");
+const checkBoxesArray = document.querySelectorAll(".to-do-item__status-togler");
 checkBoxesArray.forEach(element => {
     element.onclick = toggleTaskCompleteStatus;
 });
 
-const deleteButtonsArray = document.querySelectorAll(".delete-btn");
+const deleteButtonsArray = document.querySelectorAll(".button--delete");
 deleteButtonsArray.forEach(element => {
     element.onclick = removeTask;
 });
 
-const editeButtonsArray = document.querySelectorAll(".edit-btn");
+const editeButtonsArray = document.querySelectorAll(".button--edit");
 editeButtonsArray.forEach(element => {
     element.onclick = editExistingTask;
 });
 
 function renderTaskItem(taskName) {
     const container = document.createElement("li");
-    container.className = "task-item-box";
+    container.className = "list-of-tasks__list-item";
 
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
-    checkBox.className = "task-status-togler"
+    checkBox.className = "to-do-item__status-togler"
     checkBox.onchange = toggleTaskCompleteStatus;
 
     const input = document.createElement("input");
     input.type = "text";
-    input.className = "task-input";
+    input.className = "to-do-item__input";
     input.value = taskName;
     input.disabled = true;
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
-    editButton.className = "btn edit-btn";
+    editButton.className = "button button--edit";
     editButton.onclick = editExistingTask;
 
     const deleteButton = document.createElement("button");
-    deleteButton.className = "btn delete-btn";
+    deleteButton.className = "button button--delete";
     deleteButton.onclick = removeTask;
 
     container.appendChild(checkBox);
@@ -59,8 +59,8 @@ function addNewTask() {
 
 function editExistingTask() {
     const taskItem = this.parentNode;
-    const input = taskItem.querySelector(".task-input");
-    const editButton = taskItem.querySelector(".edit-btn");
+    const input = taskItem.querySelector(".to-do-item__input");
+    const editButton = taskItem.querySelector(".button--edit");
 
     if (input.disabled) {
         editButton.textContent = "Save";

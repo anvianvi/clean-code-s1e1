@@ -40,7 +40,7 @@
 .input-container {
   display: flex;
 }
-.task-input {
+.to-do-item__input {
   flex-grow: 1;
   padding: 3px 10px;
   margin: 0;
@@ -52,17 +52,17 @@
   border-radius: 6px;
 }
 
-.task-input:disabled {
+.to-do-item__input:disabled {
   background: transparent;
   border-color: transparent;
   color: #888;
 }
 
-#completed-tasks-list .task-input:disabled {
+#completed-tasks-list .to-do-item__input:disabled {
   text-decoration: line-through;
 }
 
-.task-item-box {
+.list-of-tasks__list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,7 +71,7 @@
   border-bottom: 3px solid #eee;
 }
 
-.task-status-togler {
+.to-do-item__status-togler {
   margin: 10px;
 }
 
@@ -79,7 +79,7 @@
   padding: 0;
 }
 
-.btn {
+.button {
   background: none;
   border: 0px;
   color: #888;
@@ -89,16 +89,16 @@
   cursor: pointer;
 }
 
-.btn:hover {
-  color: #3a3a3a;
+.button:hover {
+  color: #333;
 }
 
-.delete-btn {
+.button--delete {
   position: relative;
   width: 2em;
   height: 2em;
 }
-.delete-btn::before {
+.button--delete::before {
   content: url("remove.svg");
   display: inline-block;
   width: 2em;
@@ -110,6 +110,6 @@
   transition: transform 200ms ease-in;
 }
 
-.delete-btn:hover::before {
+.button--delete:hover::before {
   transform: translate(-50%, -50%) rotateZ(0);
 }

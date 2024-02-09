@@ -34,25 +34,30 @@
       <section aria-label="add-items-block">
         <h6 class="block-title">Add Item</h6>
         <div class="input-container">
-          <input type="text" class="task-input" id="new-task-input" />
-          <button class="btn" id="add-new-task-button">Add</button>
+          <input type="text" class="to-do-item__input" id="new-task-input" />
+          <button class="button" id="add-new-task-button">Add</button>
         </div>
       </section>
 
       <section aria-label="to-do-block">
         <h6 class="block-title">Todo</h6>
         <ul id="to-do-tasks-list" class="list-of-tasks">
-          <li class="task-item-box">
-            <input type="checkbox" class="task-status-togler" />
-            <input type="text" class="task-input" value="Pay Bills" disabled />
-            <button class="btn edit-btn">Edit</button>
-            <button class="btn delete-btn"></button>
+          <li class="list-of-tasks__list-item to-do-item">
+            <input type="checkbox" class="to-do-item__status-togler" />
+            <input
+              type="text"
+              class="to-do-item__input"
+              value="Pay Bills"
+              disabled
+            />
+            <button class="button button--edit">Edit</button>
+            <button class="button button--delete"></button>
           </li>
-          <li class="task-item-box">
-            <input type="checkbox" class="task-status-togler" />
-            <input type="text" value="Go Shopping" class="task-input" />
-            <button class="btn edit-btn">Save</button>
-            <button class="btn delete-btn"></button>
+          <li class="list-of-tasks__list-item">
+            <input type="checkbox" class="to-do-item__status-togler" />
+            <input type="text" value="Go Shopping" class="to-do-item__input" />
+            <button class="button button--edit">Save</button>
+            <button class="button button--delete"></button>
           </li>
         </ul>
       </section>
@@ -60,16 +65,16 @@
       <section aria-label="complited-block">
         <h6 class="block-title">Completed</h6>
         <ul id="completed-tasks-list" class="list-of-tasks">
-          <li class="task-item-box">
-            <input type="checkbox" class="task-status-togler" checked />
+          <li class="list-of-tasks__list-item">
+            <input type="checkbox" class="to-do-item__status-togler" checked />
             <input
               type="text"
-              class="task-input"
+              class="to-do-item__input"
               value="See the Doctor"
               disabled
             />
-            <button class="btn edit-btn">Edit</button>
-            <button class="btn delete-btn"></button>
+            <button class="button button--edit">Edit</button>
+            <button class="button button--delete"></button>
           </li>
         </ul>
       </section>
